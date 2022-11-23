@@ -11,17 +11,16 @@ public class Board {
    private final ArrayList<ArrayList<BetterMinion>> grid = new ArrayList<>();
    static final int ROW_NUMBERS = 4;
    static final int COLUMN_NUMBERS = 5;
-   static final int NOT_MAGIC_ROW0 = 0;
-   static final int NOT_MAGIC_ROW1 = 1;
-   static final int NOT_MAGIC_ROW2 = 2;
-   static final int NOT_MAGIC_ROW3 = 3;
+   static final int ROW_0 = 0;
+   static final int ROW_1 = 1;
+   static final int ROW_2 = 2;
+   static final int ROW_3 = 3;
 
    public Board() {
       for (int i = 0; i < ROW_NUMBERS; i++) {
          this.grid.add(new ArrayList<>());
       }
    }
-
    public Board(final Board board) {
       for (int i = 0; i < ROW_NUMBERS; i++) {
          this.grid.add(new ArrayList<>());
@@ -32,7 +31,6 @@ public class Board {
          }
       }
    }
-
    private int addToGrid(final BetterMinion card, final int row) {
       if (this.grid.get(row).size() == COLUMN_NUMBERS) {
          //mesaj eroare
@@ -42,24 +40,22 @@ public class Board {
       return 0;
 
    }
-
    /**
     * @param card   - The card that you want to put on the board
     * @param player - the player that puts the card
-    * @return
     */
    public int setGrid(final BetterMinion card, final int player) {
       if (player == 1) {
          if (card.getinFront()) {
-            return addToGrid(card, NOT_MAGIC_ROW2);
+            return addToGrid(card, ROW_2);
          } else {
-            return addToGrid(card, NOT_MAGIC_ROW3);
+            return addToGrid(card, ROW_3);
          }
       }
       if (card.getinFront()) {
-         return addToGrid(card, NOT_MAGIC_ROW1);
+         return addToGrid(card, ROW_1);
       } else {
-         return addToGrid(card, NOT_MAGIC_ROW0);
+         return addToGrid(card, ROW_0);
       }
 
    }
@@ -130,16 +126,16 @@ public class Board {
     */
    @JsonIgnore
    public boolean getTankStatus(final int attackedX) {
-      if (attackedX == NOT_MAGIC_ROW0 || attackedX == NOT_MAGIC_ROW1) {
-         for (int j = 0; j < this.grid.get(NOT_MAGIC_ROW1).size(); j++) {
-            if (this.getGridSquare(NOT_MAGIC_ROW1, j).getTank()) {
+      if (attackedX == ROW_0 || attackedX == ROW_1) {
+         for (int j = 0; j < this.grid.get(ROW_1).size(); j++) {
+            if (this.getGridSquare(ROW_1, j).getTank()) {
                return true;
             }
          }
          return false;
       }
-      for (int j = 0; j < this.grid.get(NOT_MAGIC_ROW2).size(); j++) {
-         if (this.getGridSquare(NOT_MAGIC_ROW2, j).getTank()) {
+      for (int j = 0; j < this.grid.get(ROW_2).size(); j++) {
+         if (this.getGridSquare(ROW_2, j).getTank()) {
             return true;
          }
       }

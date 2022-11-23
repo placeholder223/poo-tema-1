@@ -1,0 +1,12 @@
+Starting audit...
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:23:15: Variable 'givenMana' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:24:15: Variable 'actionIndex' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:25:29: Variable 'handPlayerOne' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:26:29: Variable 'handPlayerTwo' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:27:22: Variable 'heroPlayerOne' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:28:22: Variable 'heroPlayerTwo' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:29:29: Variable 'deckOne' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\ExtraDataGame.java:30:29: Variable 'deckTwo' must be private and have accessor methods. [VisibilityModifier]
+[ERROR] D:\POO\oop-asignments\teme\tema\.\src\main\IciTarnIciDo.java:24:4: Method length is 200 lines (max allowed is 150). [MethodLength]
+Audit done.
+Checkstyle ends with 9 errors.

@@ -52,4 +52,5 @@ public class HowManyWins {
    public void setWinsPlayerTwo(final int winsPlayerTwo) {
       this.winsPlayerTwo = winsPlayerTwo;
    }
+
 }

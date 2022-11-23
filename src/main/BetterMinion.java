@@ -82,8 +82,8 @@ public class BetterMinion {
    /**
     * only used when the card is initialized
     */
-   public void setTank() {
-      this.tank = true;
+   public void setTank(final boolean value) {
+      this.tank = value;
    }
 
    /**

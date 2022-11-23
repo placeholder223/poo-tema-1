@@ -13,6 +13,7 @@ public class ThrowError {
       temp.put("handIdx", currAction.getHandIdx());
       return true;
    }
+
    /**
     * ditto
     */
@@ -21,6 +22,16 @@ public class ThrowError {
       temp.put("playerIdx", currAction.getPlayerIdx());
       return true;
    }
+
+   /**
+    * ditto
+    */
+   public boolean rowError(final ObjectNode temp, final ActionsInput currAction) {
+      temp.put("command", currAction.getCommand());
+      temp.put("affectedRow", currAction.getAffectedRow());
+      return true;
+   }
+
    /**
     * used to replace those * 3 * lines in the code with only one
     * a bit of tidying
@@ -31,4 +42,5 @@ public class ThrowError {
       temp.put("command", currAction.getCommand());
       return true;
    }
+
 }

@@ -21,13 +21,15 @@ public class Start {
     */
    public void stepItUp(final Input inputData, final ObjectMapper objectMapper,
                         final ArrayNode output) {
-      objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+      objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL); // ignores null fields
       int numOfGames = inputData.getGames().size();
       HowManyWins numWins = new HowManyWins();
       for (int currentNumber = 0; currentNumber < numOfGames; currentNumber++) {
-         GameInput currGame = inputData.getGames().get(currentNumber);
+         GameInput currGame = inputData.getGames().get(currentNumber); // the actions of the game
+         // mostly
          ExtraDataGame extraData = new ExtraDataGame();
-         StartGameInput currSettings = currGame.getStartGame();
+         StartGameInput currSettings = currGame.getStartGame(); // the starting data of the game
+         // such as the first player and the decks
          int secondPlayer = ExtraDataGame.FUNKY_TURN_MATH - currSettings.getStartingPlayer();
          ArrayList<CardInput> proxyDeck = inputData.getPlayerOneDecks().getDecks().get(
                currSettings.getPlayerOneDeckIdx());
@@ -44,10 +46,8 @@ public class Start {
                      || tempCard.getName().compareTo("Goliath") == 0
                      || tempCard.getName().compareTo("Warden") == 0
                      || tempCard.getName().compareTo("Miraj") == 0);
-               if (tempCard.getName().compareTo("Goliath") == 0
-                     || tempCard.getName().compareTo("Warden") == 0) {
-                  tempCard.setTank();
-               }
+               tempCard.setTank(tempCard.getName().compareTo("Goliath") == 0
+                     || tempCard.getName().compareTo("Warden") == 0);
                extraData.deckOne.add(tempCard);
             }
          }
@@ -66,18 +66,14 @@ public class Start {
                      || tempCard.getName().compareTo("Goliath") == 0
                      || tempCard.getName().compareTo("Warden") == 0
                      || tempCard.getName().compareTo("Miraj") == 0);
-               if (tempCard.getName().compareTo("Goliath") == 0
-                     || tempCard.getName().compareTo("Warden") == 0) {
-                  tempCard.setTank();
-               }
+               tempCard.setTank(tempCard.getName().compareTo("Goliath") == 0
+                     || tempCard.getName().compareTo("Warden") == 0);
                extraData.deckTwo.add(tempCard);
             }
          }
-
          Collections.shuffle(extraData.deckOne, new Random(currSettings.getShuffleSeed()));
          Collections.shuffle(extraData.deckTwo, new Random(currSettings.getShuffleSeed()));
-//         ArrayList<Object> extraData.handPlayerOne = new ArrayList<>();
-//         ArrayList<Object> extraData.handPlayerTwo = new ArrayList<>();
+         //converts the heroes to my class and also sets their health
          extraData.heroPlayerOne = new BetterHero(currSettings.getPlayerOneHero());
          extraData.heroPlayerTwo = new BetterHero(currSettings.getPlayerTwoHero());
          extraData.heroPlayerOne.setHealth(ExtraDataGame.HERO_STARTING_HEALTH);
@@ -87,8 +83,8 @@ public class Start {
             if (extraData.givenMana < ExtraDataGame.MAX_MANA) {
                extraData.givenMana++;
             }
-            extraData.manaPlayerOne += extraData.givenMana;
-            extraData.manaPlayerTwo += extraData.givenMana;
+            extraData.setManaPlayerOne(extraData.getManaPlayerOne() + extraData.givenMana);
+            extraData.setManaPlayerTwo(extraData.getManaPlayerTwo() + extraData.givenMana);
             if (extraData.deckOne.size() > 0) {
 
                extraData.handPlayerOne.add(extraData.deckOne.get(0));
@@ -101,7 +97,7 @@ public class Start {
             IciTarnIciDo turnFunction = new IciTarnIciDo();
             turnFunction.oreNoTurn(currGame, currSettings, secondPlayer, objectMapper, output,
                   extraData, 1, board, numWins, currentNumber);
-            if (extraData.gameOver == 1) {
+            if (extraData.getGameOver() == 1) {
                break;
             }
             board.unfreezeAll(currSettings.getStartingPlayer());
@@ -123,11 +119,9 @@ public class Start {
                extraData.heroPlayerTwo.setHasAttacked((false));
             }
             if (extraData.actionIndex >= currGame.getActions().size()) {
-               extraData.gameOver = 1;
+               extraData.setGameOver(1);
             }
-         } while (extraData.gameOver == 0);
-         System.out.println("///////new game");
+         } while (extraData.getGameOver() == 0);
       }
-      System.out.println("\\\\\\\\\\\\\\\\new round");
    }
 }
